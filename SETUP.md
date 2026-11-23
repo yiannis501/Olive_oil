@@ -51,7 +51,7 @@ At 100 bottles this takes about 10 minutes a batch. Automating it (for example w
 - [ ] Email address and Instagram handle
 - [ ] Both Stripe links, tested
 - [ ] Check the bottle render (`public/brand/bottle.webp`) and the label scene match the final printed label
-- [ ] Optional: add real photos of the grove; see DESIGN.md for where they fit
+- [ ] Optional: add real photos of the grove; they fit best in the story section and the story page
 - [ ] Family details in `src/pages/story.astro`
 - [ ] Terms, returns and privacy checked
 - [ ] Postage prices checked against your Click & Drop prices for a packed bottle
