@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop, postage } from '../config';
+---
+
+<Base title="Delivery">
+  <article class="narrow">
+    <h1>Delivery</h1>
+    <p class="lead">We deliver to UK addresses only, by Royal Mail Tracked 48.</p>
+
+    <table>
+      <thead><tr><th>Order</th><th>Postage</th></tr></thead>
+      <tbody>
+        {postage.map((p) => <tr><td>{p.what}</td><td>£{p.price.toFixed(2)}</td></tr>)}
+      </tbody>
+    </table>
+
+    {shop.christmas.open && (
+      <>
+        <h2>Christmas orders</h2>
+        <p>
+          Order by <strong>{shop.christmas.lastOrder}</strong>. We dispatch all Christmas orders
+          <strong>{shop.christmas.dispatch}</strong>, in time for Royal Mail's Christmas delivery dates.
+          If anything delays your order, we will email you straight away and you can choose a full refund.
+        </p>
+      </>
+    )}
+
+    <h2>When your order ships</h2>
+    <p>
+      Outside the Christmas period we pack orders by hand twice a week and dispatch {shop.normalDispatch}.
+      You get an email with a tracking number when your parcel leaves us.
+    </p>
+
+    <h2>Packing</h2>
+    <p>
+      Every bottle travels sealed, in a shipper made for glass. If a bottle arrives broken, email a photo to
+      <a href={`mailto:${shop.email}`}>{shop.email}</a> within 7 days and we will send a replacement or refund you.
+    </p>
+
+    <h2>Storing your oil</h2>
+    <p>Keep the bottle closed, in a cool, dark cupboard, away from the cooker. Use it within a few months of opening.</p>
+  </article>
+</Base>

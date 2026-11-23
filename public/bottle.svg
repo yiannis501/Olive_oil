@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 360" role="img" aria-label="Diapontia 750 ml bottle">
+  <rect x="49" y="6" width="22" height="26" rx="3" fill="#2b2b26"/>
+  <path d="M51 32h18v40c0 10 25 22 25 46v222a14 14 0 0 1-14 14H40a14 14 0 0 1-14-14V118c0-24 25-36 25-46z" fill="#3d4a1c"/>
+  <path d="M51 32h18v40c0 10 25 22 25 46v222a14 14 0 0 1-14 14H40a14 14 0 0 1-14-14V118c0-24 25-36 25-46z" fill="url(#g)"/>
+  <rect x="26" y="170" width="68" height="120" fill="#f7f4ec"/>
+  <text x="60" y="222" text-anchor="middle" font-family="Georgia, serif" font-size="11" letter-spacing="2" fill="#1d1f1a">DIAPONTIA</text>
+  <line x1="40" y1="232" x2="80" y2="232" stroke="#b89a3e" stroke-width="1"/>
+  <text x="60" y="248" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#55594d">Extra Virgin</text>
+  <text x="60" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#55594d">Olive Oil</text>
+  <text x="60" y="278" text-anchor="middle" font-family="Georgia, serif" font-size="6" fill="#55594d">750 ml</text>
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".2"/></linearGradient></defs>
+</svg>

@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop } from '../config';
+---
+
+<Base title="Thank you">
+  <article class="narrow" style="text-align:center">
+    <p class="eyebrow">Order received</p>
+    <h1>Thank you</h1>
+    <p class="lead">
+      Your receipt is on its way to your inbox.
+      {shop.christmas.open
+        ? ` We dispatch Christmas orders ${shop.christmas.dispatch} and will email your tracking number then.`
+        : ` We dispatch ${shop.normalDispatch} and will email your tracking number.`}
+    </p>
+    <p>Questions? Email <a href={`mailto:${shop.email}`}>{shop.email}</a>.</p>
+    <p><a href={shop.instagram}>Follow the grove on Instagram</a></p>
+  </article>
+</Base>

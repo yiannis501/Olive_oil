@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop } from '../config';
+---
+
+<Base title="Returns and refunds">
+  <article class="narrow">
+    <h1>Returns and refunds</h1>
+
+    <h2>Changed your mind</h2>
+    <p>
+      You can cancel your order for any reason within 14 days of receiving it. Email
+      <a href={`mailto:${shop.email}`}>{shop.email}</a> to tell us, then return the unopened bottle within
+      14 days of that email. We refund the price and the standard postage within 14 days of getting the bottle
+      back. You pay the cost of returning it.
+    </p>
+    <p>
+      For hygiene reasons we cannot accept a bottle back once its seal is broken, unless it is faulty.
+    </p>
+
+    <h2>Broken or faulty</h2>
+    <p>
+      If a bottle arrives broken, or the oil is not as described, email us a photo within 7 days. We will send a
+      replacement or give you a full refund, including postage. You do not need to send it back.
+    </p>
+
+    <h2>Your legal rights</h2>
+    <p>These terms do not affect your rights under the Consumer Rights Act 2015.</p>
+  </article>
+</Base>

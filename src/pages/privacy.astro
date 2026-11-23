@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop } from '../config';
+---
+
+<Base title="Privacy">
+  <article class="narrow">
+    <h1>Privacy</h1>
+    <p>
+      {shop.company.legalName} is responsible for the personal data you give us. Contact
+      <a href={`mailto:${shop.email}`}>{shop.email}</a> with any question or request about your data.
+    </p>
+
+    <h2>What we collect and why</h2>
+    <ul>
+      <li>Your name, email, phone number and delivery address, to fill and deliver your order.</li>
+      <li>Your gift message, to write it on a card in the box.</li>
+      <li>If you agree at checkout, your email address to tell you about new batches. You can unsubscribe at any time.</li>
+    </ul>
+
+    <h2>Who we share it with</h2>
+    <ul>
+      <li>Stripe, which processes your payment.</li>
+      <li>Royal Mail, which delivers your parcel.</li>
+    </ul>
+    <p>We do not sell your data.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We keep order records for 6 years, as UK tax law requires. Marketing consent lasts until you withdraw it.</p>
+
+    <h2>Your rights</h2>
+    <p>
+      You can ask to see, correct or delete your data. You can also complain to the Information Commissioner's
+      Office at <a href="https://ico.org.uk">ico.org.uk</a>.
+    </p>
+
+    <h2>Cookies</h2>
+    <p>This website sets no tracking cookies. Stripe sets cookies on its checkout page to prevent fraud.</p>
+  </article>
+</Base>

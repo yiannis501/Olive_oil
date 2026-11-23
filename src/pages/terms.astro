@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop } from '../config';
+---
+
+<Base title="Terms of sale">
+  <article class="narrow">
+    <h1>Terms of sale</h1>
+    <!-- TODO: have these checked before launch. They are a plain starting point, not legal advice. -->
+    <p>
+      These terms apply when you buy from this website. The seller is {shop.company.legalName}, company number
+      {shop.company.number}, registered office {shop.company.registeredOffice}. Contact us at
+      <a href={`mailto:${shop.email}`}>{shop.email}</a>.
+    </p>
+
+    <h2>Orders</h2>
+    <p>
+      When you pay, you make an offer to buy. We accept it when we email you to confirm dispatch. If we cannot
+      fill your order, for example because a batch has sold out, we refund you in full.
+    </p>
+
+    <h2>Prices and payment</h2>
+    <p>
+      Prices are in pounds sterling. Postage is shown at checkout before you pay. Payments are taken by Stripe; we
+      never see or store your card details.
+    </p>
+
+    <h2>Delivery</h2>
+    <p>We deliver to UK addresses only. See <a href="/delivery/">Delivery</a> for times and costs.</p>
+
+    <h2>Cancellations and returns</h2>
+    <p>See <a href="/returns/">Returns and refunds</a>.</p>
+
+    <h2>Age</h2>
+    <p>You must be 18 or over to place an order.</p>
+
+    <h2>Law</h2>
+    <p>These terms are governed by the law of England and Wales.</p>
+  </article>
+</Base>
