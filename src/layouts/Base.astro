@@ -1,5 +1,6 @@
 ---
 import { shop } from '../config';
+import Scene from '../components/Scene.astro';
 import '../styles.css';
 
 interface Props {
@@ -7,12 +8,15 @@ interface Props {
   description?: string;
 }
 
-const { title, description = `${shop.tagline}. Independently tested, bottled in Greece, sent across the UK.` } = Astro.props;
+const {
+  title,
+  description = 'Extra virgin olive oil from our family grove on the north-west coast of Corfu. Lab tested, bottled in Greece, sent across the UK.',
+} = Astro.props;
 const fullTitle = title ? `${title} | ${shop.name}` : `${shop.name} | ${shop.tagline}`;
 const path = Astro.url.pathname;
 const nav = [
   { href: '/', label: 'Shop' },
-  { href: '/story/', label: 'Our story' },
+  { href: '/story/', label: 'Our family' },
   { href: '/delivery/', label: 'Delivery' },
 ];
 ---
@@ -27,54 +31,66 @@ const nav = [
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#1e2b1b" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    {shop.christmas.open && (
-      <div class="banner">
-        Christmas orders: place by {shop.christmas.lastOrder}, dispatched {shop.christmas.dispatch}.
-      </div>
-    )}
-    <header class="site-header">
-      <a href="/" class="wordmark" aria-label={`${shop.name} home`}>
-        <img src="/logo.svg" alt="" width="36" height="36" />
-        <span>{shop.name.toUpperCase()}</span>
-      </a>
-      <nav>
-        {nav.map((item) => (
-          <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
-        ))}
-      </nav>
-    </header>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="glass">
+      {shop.christmas.open && (
+        <p class="notice">
+          <strong>Christmas:</strong> order by {shop.christmas.lastOrder}. We dispatch {shop.christmas.dispatch}.
+        </p>
+      )}
+      <header class="wrap site-header">
+        <a href="/" class="brand" aria-label={`${shop.name} home`}>
+          <Scene uid="header" label="" />
+          <span>{shop.name.toUpperCase()}</span>
+        </a>
+        <nav aria-label="Main">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+      </header>
+      <slot name="hero" />
+    </div>
 
-    <main>
+    <main id="main">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-cols">
-        <div>
-          <p class="footer-brand">{shop.name}</p>
-          <p>{shop.tagline}.</p>
-          <p><a href={`mailto:${shop.email}`}>{shop.email}</a> · <a href={shop.instagram}>Instagram</a></p>
+    <footer class="glass site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <Scene uid="footer" label="" />
+            <p>{shop.name.toUpperCase()}</p>
+            <p class="greek" style="font-size:1.1rem;letter-spacing:0">Εξαιρετικό παρθένο ελαιόλαδο · Κέρκυρα</p>
+          </div>
+          <nav aria-label="Shop information">
+            <a href="/delivery/">Delivery</a>
+            <a href="/returns/">Returns and refunds</a>
+            <a href="/terms/">Terms of sale</a>
+            <a href="/privacy/">Privacy</a>
+          </nav>
+          <nav aria-label="Contact">
+            <a href={`mailto:${shop.email}`}>{shop.email}</a>
+            <a href={shop.instagram}>Instagram</a>
+            <a href="https://diapontiaolives.gr">diapontiaolives.gr</a>
+          </nav>
         </div>
-        <div>
-          <a href="/delivery/">Delivery</a>
-          <a href="/returns/">Returns and refunds</a>
-          <a href="/terms/">Terms of sale</a>
-          <a href="/privacy/">Privacy</a>
-        </div>
+        <p class="footer-legal soft">
+          {shop.company.legalName}, registered in England and Wales, company number {shop.company.number}.
+          Registered office: {shop.company.registeredOffice}.
+        </p>
       </div>
-      <p class="legal">
-        {shop.company.legalName}, registered in England and Wales, company number {shop.company.number}.
-        Registered office: {shop.company.registeredOffice}.
-      </p>
     </footer>
   </body>
 </html>

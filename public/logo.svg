@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1d1f1a" stroke-width="2.2" stroke-linecap="round">
-  <!-- Placeholder mark: replace with the real Diapontia logo file of the same name -->
-  <path d="M32 50V30M32 38c-4-3-8-3-11-1M32 34c4-3 8-4 11-2M32 30c-2-5-1-9 2-12" />
-  <ellipse cx="22" cy="24" rx="8" ry="5" fill="#1d1f1a" stroke="none"/>
-  <ellipse cx="40" cy="22" rx="9" ry="6" fill="#1d1f1a" stroke="none"/>
-  <ellipse cx="31" cy="16" rx="7" ry="5" fill="#1d1f1a" stroke="none"/>
-  <path d="M8 56c6-2 10-2 16 0M36 56c8-3 13-3 20 0" />
-</svg>
