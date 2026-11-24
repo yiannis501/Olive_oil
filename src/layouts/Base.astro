@@ -1,24 +1,24 @@
 ---
-import { shop } from '../config';
-import Scene from '../components/Scene.astro';
+import { shop, buy, product } from '../config';
 import '../styles.css';
 
 interface Props {
   title?: string;
   description?: string;
+  /** Header sits over the opening photo (home page only). */
+  overlay?: boolean;
+  /** The opening photo is present, so the header text turns light. */
+  light?: boolean;
 }
 
 const {
   title,
-  description = 'Extra virgin olive oil from our family grove on the north-west coast of Corfu. Lab tested, bottled in Greece, sent across the UK.',
+  description = 'Extra virgin olive oil from my family’s olive trees on the north-west coast of Corfu, sent across the UK.',
+  overlay = false,
+  light = false,
 } = Astro.props;
 const fullTitle = title ? `${title} | ${shop.name}` : `${shop.name} | ${shop.tagline}`;
 const path = Astro.url.pathname;
-const nav = [
-  { href: '/', label: 'Shop' },
-  { href: '/story/', label: 'Our family' },
-  { href: '/delivery/', label: 'Delivery' },
-];
 ---
 
 <!doctype html>
@@ -31,62 +31,47 @@ const nav = [
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#1e2b1b" />
+    <meta name="theme-color" content="#faf8f3" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <div class="glass">
-      {shop.christmas.open && (
-        <p class="notice">
-          <strong>Christmas:</strong> order by {shop.christmas.lastOrder}. We dispatch {shop.christmas.dispatch}.
-        </p>
-      )}
-      <header class="wrap site-header">
-        <a href="/" class="brand" aria-label={`${shop.name} home`}>
-          <Scene uid="header" label="" />
-          <span>{shop.name.toUpperCase()}</span>
-        </a>
-        <nav aria-label="Main">
-          {nav.map((item) => (
-            <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
-          ))}
-        </nav>
-      </header>
-      <slot name="hero" />
-    </div>
-
-    <main id="main">
-      <slot />
-    </main>
-
-    <footer class="glass site-footer">
-      <div class="wrap">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <Scene uid="footer" label="" />
-            <p>{shop.name.toUpperCase()}</p>
-            <p class="greek" style="font-size:1.1rem;letter-spacing:0">Εξαιρετικό παρθένο ελαιόλαδο · Κέρκυρα</p>
-          </div>
-          <nav aria-label="Shop information">
-            <a href="/delivery/">Delivery</a>
-            <a href="/returns/">Returns and refunds</a>
-            <a href="/terms/">Terms of sale</a>
-            <a href="/privacy/">Privacy</a>
-          </nav>
-          <nav aria-label="Contact">
-            <a href={`mailto:${shop.email}`}>{shop.email}</a>
-            <a href={shop.instagram}>Instagram</a>
-            <a href="https://diapontiaolives.gr">diapontiaolives.gr</a>
+    {shop.christmas.open && (
+      <p class="notice">Christmas orders: order by {shop.christmas.lastOrder}, dispatched {shop.christmas.dispatch}.</p>
+    )}
+    <div style={overlay ? 'position:relative' : undefined}>
+      <header class:list={['site-header', { 'page-header': !overlay }]} style={light ? 'color:var(--ground)' : undefined}>
+        <div class="wrap">
+          <a href="/" class="wordmark">{shop.name}</a>
+          <nav aria-label="Main">
+            <a href="/#story" class="hide-sm">Our story</a>
+            <a href="/delivery/" class="hide-sm" aria-current={path === '/delivery/' ? 'page' : undefined}>Delivery</a>
+            <a class="btn btn-small" href={buy.one.url}>Order · £{product.price}</a>
           </nav>
         </div>
-        <p class="footer-legal soft">
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <span class="wordmark">{shop.name}</span>
+          <nav aria-label="Shop information">
+            <a href="/delivery/">Delivery</a>
+            <a href="/returns/">Returns</a>
+            <a href="/terms/">Terms</a>
+            <a href="/privacy/">Privacy</a>
+            <a href={`mailto:${shop.email}`}>{shop.email}</a>
+            <a href={shop.instagram}>Instagram</a>
+          </nav>
+        </div>
+        <p class="footer-legal">
           {shop.company.legalName}, registered in England and Wales, company number {shop.company.number}.
           Registered office: {shop.company.registeredOffice}.
         </p>

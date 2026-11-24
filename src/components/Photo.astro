@@ -1,0 +1,34 @@
+---
+// Shows /public/photos/<name>.jpg (or .webp/.png) when the file exists.
+// Until then it shows a clearly marked "photo needed" slot, so nothing
+// unfinished can go live by accident. The shot list is in PHOTOS.md.
+import { photos } from '../photos';
+import { photoFile } from '../photo-file';
+
+interface Props {
+  name: keyof typeof photos;
+  ratio?: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const { name, ratio = '3 / 2', class: cls, eager = false } = Astro.props;
+const shot = photos[name];
+const file = photoFile(name);
+---
+
+{file ? (
+  <img
+    class:list={['photo', cls]}
+    src={`/photos/${file}`}
+    alt={shot.alt}
+    style={`aspect-ratio:${ratio}`}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+  />
+) : (
+  <div class:list={['photo', 'photo-needed', cls]} style={`aspect-ratio:${ratio}`} role="img" aria-label={`Photo to come: ${shot.alt}`}>
+    <span class="photo-needed-tag">Photo needed · {name}</span>
+    <span class="photo-needed-brief">{shot.brief}</span>
+  </div>
+)}

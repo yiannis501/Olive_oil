@@ -2,7 +2,7 @@
 
 The site is a static Astro site. Stripe Payment Links take the payments, so there is no server, database or secret key in this code. Hosting is free.
 
-All the text and links you need to change are in `src/config.ts`. The look is described in `DESIGN.md`. Search the code for `TODO` to find the rest.
+All the text and links you need to change are in `src/config.ts`. The look is described in `DESIGN.md`, and the photos in `PHOTOS.md`. Search the code for `TODO` to find the rest.
 
 ## 1. Stripe (about 20 minutes)
 
@@ -50,9 +50,9 @@ At 100 bottles this takes about 10 minutes a batch. Automating it (for example w
 - [ ] Company name, number and registered office in `src/config.ts`
 - [ ] Email address and Instagram handle
 - [ ] Both Stripe links, tested
-- [ ] Check the bottle render (`public/brand/bottle.webp`) and the label scene match the final printed label
-- [ ] Optional: add real photos of the grove; they fit best in the story section and the story page
-- [ ] Family details in `src/pages/story.astro`
+- [ ] All photos added (see PHOTOS.md) and no dashed "Photo needed" boxes left
+- [ ] No yellow highlighted gaps left in `src/pages/index.astro`
+- [ ] Bottle picture `public/brand/bottle.webp` updated to the final label
 - [ ] Terms, returns and privacy checked
 - [ ] Postage prices checked against your Click & Drop prices for a packed bottle
 

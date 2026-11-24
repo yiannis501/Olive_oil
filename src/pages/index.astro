@@ -1,143 +1,121 @@
 ---
 import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Fill from '../components/Fill.astro';
 import Scene from '../components/Scene.astro';
-import { shop, product, buy, postage, waitlistUrl } from '../config';
+import { photoFile } from '../photo-file';
+import { shop, product, buy, postage } from '../config';
 
+const heroPhoto = Boolean(photoFile('mum-in-the-grove'));
 const xmas = shop.christmas.open;
-const primaryLabel = xmas ? 'Order for Christmas' : 'Order a bottle';
-const dispatch = xmas ? `Dispatched ${shop.christmas.dispatch}` : `Dispatched ${shop.normalDispatch}`;
-
-const nutrition = [
-  ['Energy', '3389 kJ / 824 kcal'],
-  ['Fat', '91.6 g'],
-  ['of which saturates', '12.6 g', true],
-  ['monounsaturates', '67.5 g', true],
-  ['polyunsaturates', '9.2 g', true],
-  ['Carbohydrate', '0 g'],
-  ['of which sugars', '0 g', true],
-  ['Protein', '0 g'],
-  ['Salt', '0 g'],
-] as const;
 ---
 
-<Base>
-  <section slot="hero" class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1 id="hero-title">Our family’s olive oil from Corfu</h1>
-        <p class="lead soft">Pressed from olives grown on the north-west coast, overlooking the Diapontian islands.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href={buy.one.url}>
-            {primaryLabel}<span class="price-tag">£{product.price}</span>
-          </a>
-          <a class="link-action" href="#order">Or send a gift pair</a>
-        </div>
-        <ul class="hero-meta ui soft">
-          <li>Extra virgin, {product.size}</li>
-          <li>{dispatch}</li>
-          <li>UK delivery from £{postage[0].price.toFixed(2)}</li>
-        </ul>
+<Base overlay light={heroPhoto}>
+  <section class:list={['opening', { 'has-photo': heroPhoto }]} aria-labelledby="opening-title">
+    <div class="opening-photo"><Photo name="mum-in-the-grove" ratio="auto" eager /></div>
+    <div class="wrap opening-copy">
+      <h1 id="opening-title">My family’s olive trees in Corfu</h1>
+      <p>This is my mother, <Fill>[Mum’s name]</Fill>, in the grove she looks after.</p>
+    </div>
+  </section>
+
+  <section id="story" class="wrap chapter" aria-labelledby="ch1">
+    <div class="split">
+      <div class="prose">
+        <h2 id="ch1">Trees older than anyone can remember</h2>
+        <p>Our olive trees grow above the sea near <Fill>[village]</Fill>, on the north-west tip of Corfu. Some of them have stood there for hundreds of years, and they have passed from one generation of our family to the next.</p>
+        <p>From the grove you look out across the Ionian Sea to the Diapontian islands: Othonoi, Ereikoussa and Mathraki. That view gave the oil its name.</p>
       </div>
-      <div class="hero-bottle">
-        <img src="/brand/bottle.webp" width="576" height="2232" alt="A 750 ml Diapontia bottle. The label shows an old olive tree above the sea, with islands on the horizon." />
+      <Photo name="old-trunk" ratio="4 / 5" />
+    </div>
+    <figure class="full-bleed" style="margin-left:0;margin-right:0">
+      <Photo name="grove-and-islands" ratio="21 / 9" />
+      <figcaption class="caption">The grove, and the Diapontian islands on the horizon.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap chapter" aria-labelledby="ch2">
+    <div class="split flip">
+      <div class="prose">
+        <h2 id="ch2">She knows every tree</h2>
+        <p><Fill>[Two or three true sentences about Mum: when she started working in the grove, who taught her, what she does there through the year.]</Fill></p>
+        <blockquote class="quote">
+          <p><Fill>“[Something Mum says about the trees, in her words.]”</Fill></p>
+          <footer><Fill>[Mum’s name]</Fill>, in the grove</footer>
+        </blockquote>
+      </div>
+      <Photo name="mum-hands" ratio="4 / 5" />
+    </div>
+  </section>
+
+  <section class="wrap chapter" aria-labelledby="ch3">
+    <div class="prose">
+      <h2 id="ch3">Picked by the family, pressed on the island</h2>
+      <p>Every <Fill>[harvest months]</Fill> the family lays nets under the trees and gathers the olives. They are pressed on the island, and an independent laboratory tests each batch. Only oil that passes as extra virgin goes into a Diapontia bottle.</p>
+    </div>
+    <div class="harvest">
+      <Photo name="harvest-nets" ratio="3 / 2" />
+      <div class="harvest-side">
+        <Photo name="family-archive" ratio="4 / 3" />
       </div>
     </div>
   </section>
 
-  <section class="view" aria-labelledby="view-title">
-    <div class="wrap view-grid">
-      <figure class="view-scene" style="margin:0">
-        <Scene uid="view" />
-        <figcaption class="view-caption">The view on the label: our grove, the Ionian Sea, and Othonoi and Diaplo on the horizon.</figcaption>
-      </figure>
-      <div>
-        <h2 id="view-title">What is in the bottle</h2>
-        <p>One family grove. Olives pressed on the island, and oil that an independent laboratory has tested as extra virgin before it is bottled.</p>
-        <ul class="ruled" aria-label="Product facts">
-          <li><span>Grade</span><span>Extra virgin, lab tested every batch</span></li>
-          <li><span>Origin</span><span>North-west Corfu, Greece</span></li>
-          <li><span>Bottle</span><span>{product.size} glass</span></li>
-          <li><span>First batch</span><span>100 bottles</span></li>
-        </ul>
+  <section class="wrap chapter" aria-labelledby="ch4">
+    <div class="split">
+      <div class="prose">
+        <h2 id="ch4">Now, at yours</h2>
+        <p>This oil has always been shared at our family’s table. This winter, for the first time, we have bottled a small batch of 100 bottles to share with you in the UK.</p>
+        <div class="scene-line"><Scene uid="home" /></div>
       </div>
+      <Photo name="at-the-table" ratio="4 / 5" />
     </div>
   </section>
 
-  <section class="glass story" aria-labelledby="story-title">
-    <div class="wrap story-grid">
-      <div>
-        <h2 id="story-title">Our family</h2>
-        <p class="greek" lang="el">Η οικογένειά μας</p>
+  <section id="order" class="wrap shop" aria-labelledby="shop-title">
+    <div class="shop-inner">
+      <div class="shop-bottle">
+        <img src="/brand/bottle.webp" width="576" height="2232" alt="A 750 ml bottle of Diapontia" />
       </div>
-      <div class="story-body">
-        <p>Our olive trees have been in the family for hundreds of years. They grow on the north-west coast of Corfu, where the land meets the Ionian Sea and the Diapontian islands sit on the horizon.</p>
-        <p class="soft">Each generation has cared for the same groves and passed them on to the next. This bottle holds their oil, harvested and pressed on the island, and shared with you as it has always been shared at our table.</p>
-        <a class="link-action" href="/story/">Read more about the grove</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="order" class="order" aria-labelledby="order-title">
-    <div class="wrap order-grid">
       <div>
-        <h2 id="order-title">Order</h2>
-        <p class="soft">
-          {xmas
-            ? `Order by ${shop.christmas.lastOrder} and we dispatch ${shop.christmas.dispatch}, in time for Christmas.`
-            : `We pack every order by hand and dispatch ${shop.normalDispatch}.`}
+        <h2 id="shop-title">Diapontia extra virgin olive oil</h2>
+        <p class="price">£{product.price} <span class="small muted" style="font-family:var(--text)">{product.size}</span></p>
+        <p class="muted">
+          {xmas ? `Order by ${shop.christmas.lastOrder} and we dispatch ${shop.christmas.dispatch}.` : `Dispatched ${shop.normalDispatch}.`}
           {' '}Add a gift message at checkout and we write it by hand on a card in the box.
         </p>
-        <div class="choice">
-          <div class="choice-head"><h3>One bottle</h3><span class="choice-price">£{buy.one.price}</span></div>
-          <p class="ui soft">{product.size}. Postage £{postage[0].price.toFixed(2)}, Royal Mail Tracked 48.</p>
-          <a class="btn btn-primary" href={buy.one.url}>{primaryLabel}<span class="price-tag">£{buy.one.price}</span></a>
+        <div class="shop-actions">
+          <a class="btn" href={buy.one.url}>Order a bottle · £{buy.one.price}</a>
+          <a href={buy.two.url}>Or two as a gift, £{buy.two.price}</a>
         </div>
-        <div class="choice">
-          <div class="choice-head"><h3>Gift pair</h3><span class="choice-price">£{buy.two.price}</span></div>
-          <p class="ui soft">Two bottles in one box, to one address. Postage £{postage[1].price.toFixed(2)}.</p>
-          <a class="link-action" href={buy.two.url}>Order the gift pair</a>
-        </div>
-        {waitlistUrl && <p class="ui" style="margin-top:1.5rem"><a href={waitlistUrl}>Hear when the next batch is ready</a></p>}
-      </div>
-      <div>
-        <p class="ruled-title">Nutrition declaration · typical values per 100 ml</p>
-        <ul class="ruled" aria-label="Nutrition per 100 ml">
-          {nutrition.map(([k, v, sub]) => <li class={sub ? 'sub' : undefined}><span>{k}</span><span>{v}</span></li>)}
+        <ul class="facts">
+          <li>Extra virgin, lab tested every batch</li>
+          <li>UK delivery from £{postage[0].price.toFixed(2)}, Royal Mail Tracked 48</li>
+          <li>First batch of 100 bottles</li>
         </ul>
-        <p class="ui soft" style="margin-top:1rem">Superior category olive oil obtained directly from olives and solely by mechanical means. Store in a cool, dark place.</p>
       </div>
     </div>
   </section>
 
-  <section class="faq" aria-labelledby="faq-title">
-    <div class="wrap">
-      <h2 id="faq-title">Questions</h2>
-      <div class="faq-list">
-        <details>
-          <summary>When will my order arrive?</summary>
-          <p>{xmas ? `Christmas orders placed by ${shop.christmas.lastOrder} are dispatched ${shop.christmas.dispatch}. ` : ''}Outside Christmas we dispatch {shop.normalDispatch}. Royal Mail Tracked 48 usually delivers two to three working days later, and you get a tracking number by email.</p>
-        </details>
-        <details>
-          <summary>How do I know it is extra virgin?</summary>
-          <p>“Extra virgin” is a legal grade with set limits. An independent laboratory tests every batch before it is bottled, and only oil that passes carries the Diapontia name. Email us and we will send you the result for your batch.</p>
-        </details>
-        <details>
-          <summary>Can I send it straight to someone as a gift?</summary>
-          <p>Yes. Enter their address at checkout and add a gift message. We write the message by hand on a card in the box.</p>
-        </details>
-        <details>
-          <summary>What if a bottle arrives broken?</summary>
-          <p>Every bottle travels sealed, in a shipper made for glass. If one still arrives broken, email us a photo within 7 days and we send a replacement or refund you in full.</p>
-        </details>
-        <details>
-          <summary>How should I store it?</summary>
-          <p>Closed, in a cool, dark cupboard away from the cooker. Light and heat are what spoil olive oil.</p>
-        </details>
-        <details>
-          <summary>Do you deliver outside the UK?</summary>
-          <p>Not yet. In Greece, see <a href="https://diapontiaolives.gr">diapontiaolives.gr</a>.</p>
-        </details>
-      </div>
+  <section class="wrap faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>When will my order arrive?</summary>
+        <p>{xmas ? `Christmas orders placed by ${shop.christmas.lastOrder} are dispatched ${shop.christmas.dispatch}. ` : ''}Otherwise we dispatch {shop.normalDispatch}. Royal Mail Tracked 48 usually delivers two to three working days later.</p>
+      </details>
+      <details>
+        <summary>How do I know it is extra virgin?</summary>
+        <p>An independent laboratory tests every batch before it is bottled. Email us and we will send you the result for your batch.</p>
+      </details>
+      <details>
+        <summary>Can I send it straight to someone as a gift?</summary>
+        <p>Yes. Enter their address at checkout and add a gift message. We write it by hand on a card in the box.</p>
+      </details>
+      <details>
+        <summary>What if a bottle arrives broken?</summary>
+        <p>Email us a photo within 7 days and we send a replacement or refund you in full.</p>
+      </details>
     </div>
   </section>
 </Base>
