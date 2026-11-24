@@ -61,7 +61,8 @@ p { margin: 0 0 1.1em; }
 /* Header */
 .site-header { position: absolute; inset: 0 0 auto; z-index: 5; }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.4rem; padding-bottom: 1.4rem; }
-.wordmark { font: 400 1.7rem/1 var(--display); text-decoration: none; }
+/* Brand wordmark: Cinzel, as on the bottle label */
+.wordmark { font: 500 1.35rem/1 'Cinzel', var(--display); letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; }
 .site-header nav { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); font-size: 0.95rem; }
 .site-header nav a { text-decoration: none; }
 .site-header nav a:hover { text-decoration: underline; }

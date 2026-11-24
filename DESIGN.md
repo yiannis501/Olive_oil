@@ -32,7 +32,7 @@ My mother among her olive trees. The photos carry the page; type and layout step
 | Headings | Instrument Serif 400 | Modern, narrow and calm; it reads like a book title and leaves room for photos. |
 | Text and UI | Hanken Grotesk 400 / 600 | A clean, warm sans that keeps prices, buttons and long paragraphs easy to read. |
 
-Both are Google Fonts. The bottle and label keep their own faces (Cinzel, Cormorant Garamond).
+Both are Google Fonts. The DIAPONTIA wordmark stays in Cinzel 500, tracked 0.16em, as on the bottle label, so the site and bottle read as one brand. The label keeps its own text faces (Cormorant Garamond, Source Sans 3).
 
 ## Layout
 
